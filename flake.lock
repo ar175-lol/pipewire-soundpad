@@ -1,0 +1,44 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1793726008,
+        "narHash": "sha256-jQp1wKvbwWdLBASTXkSi/VYmDJ5AbBi1WvcMt9HWJC8=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1d060086d60cb76a40cf37109f979d88a5bd6396",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "pwsp-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1793621768,
+        "narHash": "sha256-L5isWGLEtWe0jFiAS/Jp3r6cPPzYOIj8Fz3F2XkzngA=",
+        "owner": "arabianq",
+        "repo": "pipewire-soundpad",
+        "rev": "13f1a59db75d8edfb217666d22700179e8509868",
+        "type": "github"
+      },
+      "original": {
+        "owner": "arabianq",
+        "repo": "pipewire-soundpad",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "pwsp-src": "pwsp-src"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
