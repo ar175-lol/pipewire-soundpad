@@ -2,7 +2,7 @@ mod gui;
 mod locale;
 
 use anyhow::{Context, Result, anyhow};
-use pwsp_lib::utils::gui::{ensure_pwsp_audio_dir, get_gui_config};
+use pwsp_lib::utils::gui::get_gui_config;
 use rust_i18n::i18n;
 use std::{
     env,
@@ -59,7 +59,15 @@ async fn download_audio_from_url(uri: &str) -> Result<PathBuf> {
         .and_then(|n| n.to_str())
         .unwrap_or("downloaded_audio.mp3");
 
-    let save_path = ensure_pwsp_audio_dir()?.join(sanitized_file_name);
+    let save_dir = dirs::download_dir()
+        .or_else(dirs::home_dir)
+        .unwrap_or_else(|| env::current_dir().unwrap_or_else(|_| PathBuf::from(".")));
+
+    tokio::fs::create_dir_all(&save_dir)
+        .await
+        .context("Failed to create the downloads directory")?;
+
+    let save_path = save_dir.join(sanitized_file_name);
 
     let response = reqwest::get(target_url)
         .await?
